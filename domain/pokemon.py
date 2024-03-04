@@ -93,7 +93,23 @@ class Pokemon:
         if len(self.poke_data['pokemon']) > 0:
             pokemon = [poke['pokemon']['name']
                        for poke in self.poke_data['pokemon']]
-            pokemon = list(map(lambda x:
-                               map(lambda y: y in x, self.letter), pokemon))
-            pokemon = random.choice(pokemon)
+            contains = []
+            for letter in self.letter:
+                for poke_name in pokemon:
+                    if letter in poke_name:
+                        await self.set_contains(poke_name, contains)
+            pokemon = random.choice(contains)
         return pokemon
+
+    @staticmethod
+    async def set_contains(poke_name, contains):
+        """Append pokémon name in contains.
+
+        :param poke_name: pokémon name
+        :param contains: list of pokémon names
+        """
+        if poke_name not in contains:
+            contains.append(poke_name)
+
+
+
