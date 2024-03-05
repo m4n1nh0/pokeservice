@@ -15,6 +15,7 @@ class Pokemon:
         """Get a pokémon data from name in API.
 
         :param name: The name of the pokémon
+        :returns: A dictionary of pokémon data
         """
         self.poke_name = name
         pokemon = requests.get(f'{self.url}pokemon/' + self.poke_name)

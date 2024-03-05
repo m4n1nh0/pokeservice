@@ -1,6 +1,7 @@
 """Service router for Pokémon API."""
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from fastapi_jwt_auth import AuthJWT
 
 from schemas.meteo import MeteoSchema
 from services.geocoding import Geocoding
@@ -17,11 +18,14 @@ no_type = "Tipo de pokémon não encontrado com este nome: {}"
 
 
 @router.get("/chose_one_pokemon/{poke_name}")
-async def search_pokemon_by_name(poke_name: str):
+async def search_pokemon_by_name(poke_name: str,
+                                 auth_jwt: AuthJWT = Depends()):
     """Search pokémon by name.
     :param poke_name: the name of the pokémon
+    :param auth_jwt: Auth check with jwt
     :return all data from selected pokémon database
     """
+    auth_jwt.jwt_required()
     poke_data = await Pokemon().get_pokemon(poke_name)
     if not poke_data:
         raise Utils.api_exception(
@@ -31,11 +35,14 @@ async def search_pokemon_by_name(poke_name: str):
 
 
 @router.get("/chose_pokemon_type/{poke_name}")
-async def get_pokemon_type_by_name(poke_name: str):
+async def get_pokemon_type_by_name(poke_name: str,
+                                   auth_jwt: AuthJWT = Depends()):
     """Get pokémon type by name.
     :param poke_name: the name of the pokémon
+    :param auth_jwt: Auth check with jwt
     :return type of pokémon name
     """
+    auth_jwt.jwt_required()
     poke_data = await Pokemon().get_pokemon(poke_name)
     if not poke_data:
         raise Utils.api_exception(
@@ -51,11 +58,14 @@ async def get_pokemon_type_by_name(poke_name: str):
 
 
 @router.get("/chose_pokemon_by_type/{type_name}")
-async def get_pokemon_by_type_name(type_name: str):
+async def get_pokemon_by_type_name(type_name: str,
+                                   auth_jwt: AuthJWT = Depends()):
     """Get random by pokémon type by name.
     :param type_name: the name of the pokémon
+    :param auth_jwt: Auth check with jwt
     :return random pokémon by type_name
     """
+    auth_jwt.jwt_required()
     poke_api = Pokemon()
     type_data = await poke_api.get_pokemon_by_type(type_name)
     if not type_data:
@@ -73,11 +83,14 @@ async def get_pokemon_by_type_name(type_name: str):
 
 
 @router.get("/larger_pokemon_name_by_type/{type_name}")
-async def get_larger_pokemon_name_by_type(type_name: str):
+async def get_larger_pokemon_name_by_type(type_name: str,
+                                          auth_jwt: AuthJWT = Depends()):
     """Get larger pokémon name by type.
     :param type_name: the name of the pokémon
+    :param auth_jwt: Auth check with jwt
     :return pokémon larger name in type
     """
+    auth_jwt.jwt_required()
     poke_api = Pokemon()
     type_data = await poke_api.get_pokemon_by_type(type_name)
     if not type_data:
@@ -97,11 +110,14 @@ async def get_larger_pokemon_name_by_type(type_name: str):
 
 @router.post("/pokemon_by_type_temperature")
 async def get_pokemon_by_type_temperature(
-        meteo: MeteoSchema):
+        meteo: MeteoSchema,
+        auth_jwt: AuthJWT = Depends()):
     """Prepare pokémon by type and temperature.
     :param meteo: Meteo schema
+    :param auth_jwt: Auth check with jwt
     :return pokémon from type and city temperature
     """
+    auth_jwt.jwt_required()
     poke_api = Pokemon()
     meteo_api = OpenMeteoService()
     location = Geocoding(meteo.city)
