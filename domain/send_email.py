@@ -44,10 +44,10 @@ class SendEmail:
             return ConnectionConfig(
                 MAIL_USERNAME=config('MAIL_USERNAME'),
                 MAIL_PASSWORD=config('MAIL_PASSWORD'),
-                MAIL_FROM=config('MAIL_FROM', default='no-replay@ish-labs.com'),
+                MAIL_FROM=config('MAIL_FROM', default='no-replay@pokeservice.com'),
                 MAIL_PORT=config('MAIL_PORT', default=587),
                 MAIL_SERVER=config('MAIL_SERVER'),
-                MAIL_FROM_NAME='RaidStorm',
+                MAIL_FROM_NAME='Pokeservice',
                 MAIL_TLS=True,
                 MAIL_SSL=False,
                 USE_CREDENTIALS=True,
