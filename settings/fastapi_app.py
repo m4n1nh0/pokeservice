@@ -4,6 +4,8 @@ from fastapi_jwt_auth import AuthJWT
 
 from database.redis import redis_conn
 from schemas.auth_jwt import AuthJwtSettings
+from settings.fastapi_events import fastapi_events
+from settings.fastapi_middlewares import fastapi_middleware
 from settings.openapi import poke_openapi
 
 
@@ -42,6 +44,8 @@ def create_app() -> FastAPI:
     )
 
     app.openapi = poke_openapi(app)
+    fastapi_events(app)
+    fastapi_middleware(app)
 
     api = "/api"
 

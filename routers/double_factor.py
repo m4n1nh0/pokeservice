@@ -39,7 +39,7 @@ async def double_factor_validate(
         SysLog(__name__).show_log(TypeLog.info.value, msg)
         raise utils.api_exception('api007', status.HTTP_400_BAD_REQUEST)
 
-    digest, user_id = digest_decrypt.split("P0K")
+    _, user_id = digest_decrypt.split("P0K")
     user_data = await UserDTO(session).get_by_id(int(user_id))
     route = "double-factor/validate"
 
@@ -47,11 +47,6 @@ async def double_factor_validate(
         msg = SystemMessages.not_exists.value.format(
             user_str, "post", route)
         SysLog(__name__).show_log(TypeLog.info.value, msg)
-        raise utils.api_exception('api007', status.HTTP_400_BAD_REQUEST)
-
-    digest = decrypt(digest, user_data.secret_key)
-
-    if digest != user_data.secret_data:
         raise utils.api_exception('api007', status.HTTP_400_BAD_REQUEST)
 
     block_suspicious = BlockSuspiciousLogin(user_data)
@@ -92,9 +87,6 @@ async def double_factor_validate(
     SysLog(__name__).show_log(TypeLog.info.value, msg)
 
     await block_suspicious.mark_last_attempts_as_validated(session)
-
-    await UserDTO(session).update(
-        user_data.id, {"secret_data": None, "secret_key": None})
 
     return data
 

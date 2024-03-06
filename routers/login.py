@@ -40,15 +40,7 @@ async def login(user_login: LoginSchema,
             session, user_data.id, user_data.username,
             str(uuid4().int)[:8], background_tasks)
 
-    secret_data = {
-        "secret_key": Utils().secret_key_generator(),
-        "secret_data": f"{str(uuid4().int)[:8]}"
-    }
-
-    await UserDTO(session).update(user_data.id, secret_data)
-
-    digest = encrypt(secret_data["secret_data"], secret_data["secret_key"])
-    digest = encrypt(f"{digest}P0K{user_data.id}", SECRET_TOKEN)
+    digest = encrypt(f"P0K{user_data.id}", SECRET_TOKEN)
 
     msg = (f"Login efetuado com sucesso pelo usuário {user_data.username}. "
            f"method=post route=/login")
