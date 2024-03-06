@@ -1,0 +1,8 @@
+Generic single-database configuration.
+
+1 - Generate and run migration (review):
+    1.1 - alembic revision --autogenerate -m "name migration"
+    1.2 - Possibility to run informing the version
+        1.2.1 - alembic revision --autogenerate -m "name migration" --rev-id=
+    1.3 - alembic upgrade head
+    1.4 - alembic downgrade -1
