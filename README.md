@@ -83,7 +83,15 @@ TODO: Guidance on how to upload the project:
       1. `Docker`
       2. `Docker-Compose`
          1. This for install container in development ambient
-
+   
+   3. Aplications uses
+      1. To make access you need insert in router this json
+         {
+           "username": "pokemon@pokeservice.com.br",
+           "password": "P0K@852@@admin741$#"
+         }
+      2. In sequence you get double factor code in system log or apply an validate email in migration and after in envioriment email send configuration
+      3. Finaly get your token and joy aplication 
 
 # Documentation
 1. [FastAPI](https://fastapi.tiangolo.com/pt/)
