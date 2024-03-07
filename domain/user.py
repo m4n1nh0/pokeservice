@@ -67,7 +67,7 @@ def get_url_and_email_template(template: str) -> Any:
              Template_email: Html existing in the template folder.
     """
 
-    template_email = f"/mail/poke/{template}.html"
+    template_email = f"/mail/{template}.html"
     project_url = URL_EMAIL
 
     return template_email, project_url

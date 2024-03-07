@@ -1,0 +1,40 @@
+{% extends '/mail/base_email.html' %}
+
+
+{% block title %} First Access{% endblock %}
+
+{% block tr %} Welcome to PokeService {% endblock %}
+
+{% block content %}
+
+  <tr>
+    <td style="padding-bottom: 25px">
+      Para ter acesso à plataforma será necessário que você realize a criação
+      de uma nova senha que será vinculada ao seu usuário de acesso.
+      Basta clicar no botão Criar Nova Senha.
+    </td>
+  </tr>
+
+  <tr>
+    <td
+      style="padding-bottom: 25px; font-size: 14px; line-height: 20px"
+    >
+      <a
+        href="{{url_first_access}}/create-password?token={{ token }}"
+        style="
+          text-decoration: none;
+          cursor: pointer;
+          color: #ffffff;
+          padding: 10px;
+          background: #ff005c;
+          border-radius: 6px;
+          width: fit-content;
+          margin: 0 auto;
+        "
+      >
+        Criar nova senha
+      </a>
+    </td>
+  </tr>
+
+{% endblock %}

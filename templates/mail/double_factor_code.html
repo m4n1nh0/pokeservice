@@ -1,0 +1,47 @@
+{% extends '/mail/base_email.html' %}
+
+
+{% block title %} Double Factor {% endblock %}
+
+{% block tr %} Seu código de segurança está pronto!{% endblock %}
+
+{% block content %}
+
+  <tr>
+    <td style="padding-bottom: 25px">
+
+      Use o código de segurança a seguir para acessar sua conta no PokeService. Ele faz parte de uma camada de segurança que ajuda a proteger sua conta.
+
+      <strong>Importante</strong>: Este código expira em 2 minutos a partir de agora e só poderá ser utilizado uma única vez.
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding-bottom: 25px">
+      <div
+        style="
+          padding: 20px 15px;
+          background: #f0f0f0;
+          border-radius: 7px;
+          width: fit-content;
+          margin: 0 auto;
+        "
+      >
+        {% for x in range(0, (code|length)) %}
+        <span
+          style="
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 24px;
+            color: #000000;
+            margin: 0 10px;
+          "
+        >
+          {{ code[x] }}
+        </span>
+        {% endfor %}
+      </div>
+    </td>
+  </tr>
+
+{% endblock %}
