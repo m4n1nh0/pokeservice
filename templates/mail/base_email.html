@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        PokeService - {% block title %} {% endblock %}
+    </title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f1f1f1;
+      font-family: Inter, sans-serif;
+    "
+  >
+    <div
+      role="article"
+      aria-roledescription="email"
+      style="
+        text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        background-color: #f1f1f1;
+        position: relative;
+        padding: 20px;
+      "
+    >
+      <div
+        style="
+          background-color: #ffffff;
+          border-radius: 20px;
+          width: 90%;
+          max-width: 799px;
+          padding: 20px;
+          margin: 0 auto;
+          box-sizing: border-box;
+          color: #4b4b4b;
+          font-size: 16px;
+          line-height: 28px;
+        "
+      >
+        <table style="width: 100%; text-align: center">
+          <tbody>
+            <tr>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-bottom: 25px">
+                <div
+                  style="
+                    width: 50%;
+                    border-top: 2px solid #f1f1f1;
+                    margin: 0 auto;
+                  "
+                ></div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-bottom: 25px">
+                {% block icon %}
+                {% endblock %}
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding-bottom: 25px;
+                  font-weight: bold;
+                  font-size: 20px;
+                  line-height: 23px;
+                  color: #000000;
+                "
+              >
+                {% block tr %}
+                {% endblock %}
+              </td>
+            </tr>
+              {% block content %}
+              {% endblock %}
+            <tr>
+              <td style="padding-bottom: 25px">
+                <div
+                  style="
+                    width: 50%;
+                    border-top: 2px solid #f1f1f1;
+                    margin: 0 auto;
+                  "
+                ></div>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-size: 16px; line-height: 28px" v-align="center">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
